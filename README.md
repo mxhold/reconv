@@ -1,6 +1,6 @@
 # Reconv
 
-a **re**ipe **conv**erter
+a **re**cipe **conv**erter
 
 ## Requirements
 
