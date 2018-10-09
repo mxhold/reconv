@@ -7,6 +7,7 @@ a **re**cipe **conv**erter
 - all client-side (no network requests should be required to do the conversion)
 - 100% test coverage
 - fast for bad connections: total download <500 kB
+- no perceptible delay
 
 Nice to haves:
 
@@ -44,3 +45,9 @@ for example:
 1/2t salt
 1/2t vanilla
 ```
+
+## Setup
+
+1. Install [nvm](https://github.com/creationix/nvm#installation)
+2. `nvm install 10.11.0`
+3. `nvm use`
