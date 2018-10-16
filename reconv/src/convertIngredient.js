@@ -23,6 +23,11 @@ export default function convertIngredient(ingredient) {
       return e.unit === ingredientData.unit;
     });
 
+    ingredientData.metadata = {
+      ingredientFound: !!conversionDatum,
+      unitFound: !!unitDatum,
+    };
+
     if (conversionDatum && unitDatum) {
       ingredientData.quantity = ingredientData.quantity.mul(conversionDatum.gramsPerML).mul(unitDatum.mL);
       ingredientData.unit = "g";

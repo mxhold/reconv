@@ -2,3 +2,11 @@
   background-color: red;
   color: white;
 }
+
+.ingredient--unit-not-found .ingredient-unit {
+  background-color: orange;
+}
+
+.ingredient--ingredient-not-found .ingredient-name {
+  background-color: orange;
+}

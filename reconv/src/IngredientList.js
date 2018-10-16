@@ -13,7 +13,13 @@ export default function IngredientList(props) {
       return <MalformedIngredient key={i} string={line} />;
     } else {
       const ingredient = props.convert ? convertIngredient(ingredientData) : ingredientData;
-      return <Ingredient key={i} quantity={ingredient.quantity} unit={ingredient.unit} name={ingredient.name} />;
+      return <Ingredient
+        key={i}
+        quantity={ingredient.quantity}
+        unit={ingredient.unit}
+        name={ingredient.name}
+        metadata={ingredient.metadata}
+        />;
     }
   });
 
