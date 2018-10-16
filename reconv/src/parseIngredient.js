@@ -1,5 +1,5 @@
 export default function parseIngredient(text) {
-  const re = /^(\d+)(\/(\d+))?([A-z]+) +([A-z]+)$/;
+  const re = /^(\d+)(\/(\d+))?([A-z]+) +([A-z ]+)$/;
   const matches = re.exec(text);
   if (matches != null) {
     const quantity = formatQuantity(matches[1], matches[3]);
