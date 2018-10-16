@@ -1,6 +1,7 @@
 import React from 'react';
 import {Ingredient, MalformedIngredient} from './Ingredient.js';
 import parseIngredient from './parseIngredient.js';
+import convertIngredient from './convertIngredient.js';
 
 export default function IngredientList(props) {
   const lines = props.lines;
@@ -10,7 +11,7 @@ export default function IngredientList(props) {
     if (ingredientData == null) {
       return <MalformedIngredient key={i} string={line} />;
     } else {
-      const ingredient = props.convert ? convert(ingredientData) : ingredientData;
+      const ingredient = props.convert ? convertIngredient(ingredientData) : ingredientData;
       return <Ingredient key={i} quantity={ingredient.quantity} unit={ingredient.unit} name={ingredient.name} />;
     }
   });
@@ -22,14 +23,3 @@ export default function IngredientList(props) {
   );
 }
 
-function convert(ingredient) {
-  let ingredientData = Object.assign({}, ingredient);
-
-  const quantity = Number.parseInt(ingredientData.quantity, 10);
-
-  if (!Number.isNaN(quantity)) {
-    ingredientData.quantity = quantity * 2;
-  }
-
-  return ingredientData;
-}
