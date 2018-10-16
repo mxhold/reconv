@@ -19,7 +19,8 @@ export default class IngredientListInput extends React.Component {
     return (
       <div>
         <textarea value={this.state.value} onChange={this.handleChange} />
-        <IngredientList lines={this.state.value} />
+        <IngredientList lines={this.state.value} convert={false} />
+        <IngredientList lines={this.state.value} convert={true} />
       </div>
     );
   }

@@ -10,7 +10,7 @@ export default function IngredientList(props) {
     if (ingredientData == null) {
       return <MalformedIngredient key={i} string={line} />;
     } else {
-      const ingredient = ingredientData;
+      const ingredient = props.convert ? convert(ingredientData) : ingredientData;
       return <Ingredient key={i} quantity={ingredient.quantity} unit={ingredient.unit} name={ingredient.name} />;
     }
   });
@@ -20,4 +20,16 @@ export default function IngredientList(props) {
       {ingredients}
     </div>
   );
+}
+
+function convert(ingredient) {
+  let ingredientData = Object.assign({}, ingredient);
+
+  const quantity = Number.parseInt(ingredientData.quantity, 10);
+
+  if (!Number.isNaN(quantity)) {
+    ingredientData.quantity = quantity * 2;
+  }
+
+  return ingredientData;
 }
