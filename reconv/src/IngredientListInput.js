@@ -1,6 +1,5 @@
 import React from 'react';
-import {Ingredient, MalformedIngredient} from './Ingredient.js';
-import parseIngredient from './parseIngredient.js';
+import IngredientList from './IngredientList.js';
 
 export default class IngredientListInput extends React.Component {
   constructor(props) {
@@ -17,22 +16,10 @@ export default class IngredientListInput extends React.Component {
   }
 
   render() {
-    const lines = this.state.value;
-
-    const ingredients = lines.split("\n").map((line, i) => {
-      const ingredientData = parseIngredient(line);
-      if (ingredientData == null) {
-        return <MalformedIngredient key={i} string={line} />;
-      } else {
-        const ingredient = ingredientData;
-        return <Ingredient key={i} quantity={ingredient.quantity} unit={ingredient.unit} name={ingredient.name} />;
-      }
-    });
-
     return (
       <div>
         <textarea value={this.state.value} onChange={this.handleChange} />
-        {ingredients}
+        <IngredientList lines={this.state.value} />
       </div>
     );
   }
