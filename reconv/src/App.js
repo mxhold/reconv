@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <IngredientListInput />
+        <IngredientListInput value={"1/2c butter\n1c milk"} />
       </div>
     );
   }
