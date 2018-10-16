@@ -1,0 +1,8 @@
+.ingredient-list-input {
+  display: flex;
+}
+
+.ingredient-list-input > * {
+  margin-right: 10px;
+}
+

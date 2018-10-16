@@ -1,4 +1,5 @@
 import React from 'react';
+import "./IngredientListInput.css";
 import IngredientList from './IngredientList.js';
 
 export default class IngredientListInput extends React.Component {
@@ -17,7 +18,7 @@ export default class IngredientListInput extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="ingredient-list-input">
         <textarea value={this.state.value} onChange={this.handleChange} />
         <IngredientList lines={this.state.value} convert={false} />
         <IngredientList lines={this.state.value} convert={true} />

@@ -2,6 +2,7 @@ import React from 'react';
 import {Ingredient, MalformedIngredient} from './Ingredient.js';
 import parseIngredient from './parseIngredient.js';
 import convertIngredient from './convertIngredient.js';
+import "./IngredientList.css";
 
 export default function IngredientList(props) {
   const lines = props.lines;
@@ -17,7 +18,7 @@ export default function IngredientList(props) {
   });
 
   return (
-    <div>
+    <div className="ingredient-list">
       {ingredients}
     </div>
   );
