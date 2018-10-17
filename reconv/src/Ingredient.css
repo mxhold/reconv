@@ -10,3 +10,11 @@
 .ingredient--ingredient-not-found .ingredient-name {
   background-color: orange;
 }
+
+.ingredient--unit-not-found::before {
+  content: "❌";
+}
+
+.ingredient--ingredient-not-found::before {
+  content: "❌";
+}
