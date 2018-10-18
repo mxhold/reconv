@@ -14,7 +14,7 @@ export function Ingredient(props) {
 
   return (
     <div className={classNames}>
-      <span className="ingredient-quantity">{props.quantity}</span><span className="ingredient-unit">{props.unit}</span> <span className="ingredient-name">{props.name}</span>
+      {quantity(props.quantity)}<span className="ingredient-unit">{props.unit}</span> <span className="ingredient-name">{props.name}</span>
     </div>
   );
 }
@@ -25,4 +25,12 @@ export function MalformedIngredient(props) {
       <span className="ingredient--malformed">{props.string}</span>
     </div>
   );
+}
+
+function quantity(quantity) {
+  let classNames = "ingredient-quantity";
+  if (quantity === "NaN") {
+    classNames += " ingredient-quantity--nan";
+  }
+  return <span className={classNames}>{quantity}</span>;
 }

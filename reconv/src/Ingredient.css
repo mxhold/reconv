@@ -10,4 +10,6 @@
   text-decoration: wavy underline red;
 }
 
-
+.ingredient-quantity--nan {
+  text-decoration: wavy underline red;
+}
