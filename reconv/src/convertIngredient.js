@@ -13,21 +13,21 @@ export default function convertIngredient(ingredient) {
 
   ingredientData.quantity = toFraction(ingredientData.quantity);
 
+  const conversionDatum = conversionData.find((e) => {
+    return e.name === ingredientData.name;
+  });
+  const unitDatum = unitData.find((e) => {
+    return e.unit === ingredientData.unit;
+  });
+
+  ingredientData.metadata = {
+    ingredientFound: !!conversionDatum,
+    unitFound: !!unitDatum,
+  };
+
   if (Number.isNaN(ingredientData.quantity)) {
     ingredientData.quantity = "NaN";
   } else {
-    const conversionDatum = conversionData.find((e) => {
-      return e.name === ingredientData.name;
-    });
-    const unitDatum = unitData.find((e) => {
-      return e.unit === ingredientData.unit;
-    });
-
-    ingredientData.metadata = {
-      ingredientFound: !!conversionDatum,
-      unitFound: !!unitDatum,
-    };
-
     if (conversionDatum && unitDatum) {
       ingredientData.quantity = ingredientData.quantity.mul(conversionDatum.gramsPerML).mul(unitDatum.mL);
       ingredientData.unit = "g";

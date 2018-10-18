@@ -35,3 +35,9 @@ it('sets metadata depending on if conversion was possible', () => {
   const water_badunit_converted = convertIngredient(water_badunit);
   expect(water_badunit_converted.metadata).toEqual({ ingredientFound: true, unitFound: false });
 });
+
+it('sets metadata even with NaN quantity', () => {
+  const water = { quantity: "1/0", unit: "c", name: "water" };
+  const water_converted = convertIngredient(water);
+  expect(water_converted.metadata).toEqual({ ingredientFound: true, unitFound: true });
+});
