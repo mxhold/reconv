@@ -22,3 +22,9 @@ it('parses with a decimal quantity', () => {
   const ingredient = { quantity: "1.2", unit: "c", name: "butter" };
   expect(parseIngredient(text)).toEqual(ingredient);
 });
+
+it('allows anything in ingredient name', () => {
+  const text = "1.2c pork-pie & #5 ham* (important/note: 2% or nonfat?!)";
+  const ingredient = { quantity: "1.2", unit: "c", name: "pork-pie & #5 ham* (important/note: 2% or nonfat?!)" };
+  expect(parseIngredient(text)).toEqual(ingredient);
+});
