@@ -1,20 +1,13 @@
 .ingredient--malformed {
-  background-color: red;
-  color: white;
+  text-decoration: wavy underline red;
 }
 
 .ingredient--unit-not-found .ingredient-unit {
-  background-color: orange;
+  text-decoration: wavy underline red;
 }
 
 .ingredient--ingredient-not-found .ingredient-name {
-  background-color: orange;
+  text-decoration: wavy underline red;
 }
 
-.ingredient--unit-not-found::before {
-  content: "❌";
-}
 
-.ingredient--ingredient-not-found::before {
-  content: "❌";
-}
