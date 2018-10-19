@@ -1,13 +1,13 @@
 import convertIngredient from './convertIngredient.js';
 
 it('does not mutate the provided object', () => {
-  const object = { quantity: "1" };
+  const object = { quantity: "1", unit: "c", name: "water" };
   const result = convertIngredient(object);
   expect(result == object).toEqual(false);
 });
 
 it('sets quantity to NaN on division by zero', () => {
-  expect(convertIngredient({ quantity: "1/0" }).quantity).toEqual("NaN");
+  expect(convertIngredient({ quantity: "1/0", unit: "c", name: "water" }).quantity).toEqual("NaN");
 });
 
 it('converts from american volume units to metric weights', () => {
