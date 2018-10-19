@@ -34,3 +34,9 @@ it('allows whole numbers with fractions', () => {
   const ingredient = { quantity: "1 1/2", unit: "c", name: "butter" };
   expect(parseIngredient(text)).toEqual(ingredient);
 });
+
+it('parses with multiple digit quantity', () => {
+  const text = "11c butter";
+  const ingredient = { quantity: "11", unit: "c", name: "butter" };
+  expect(parseIngredient(text)).toEqual(ingredient);
+});
