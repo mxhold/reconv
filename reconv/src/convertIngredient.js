@@ -1,14 +1,8 @@
 import Fraction from 'fraction.js';
+import conversionData from './ingredients.json';
+import unitData from './units.json';
 
 export default function convertIngredient(ingredient) {
-  const conversionData = [
-    { name: "water", gramsPerML: 1 },
-    { name: "butter", gramsPerML: 0.96 },
-  ];
-  const unitData = [
-    { unit: "c", mL: 237 },
-  ];
-
   let ingredientData = Object.assign({}, ingredient);
 
   ingredientData.quantity = toFraction(ingredientData.quantity);
