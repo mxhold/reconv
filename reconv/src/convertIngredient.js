@@ -5,8 +5,6 @@ import unitData from './units.json';
 export default function convertIngredient(ingredient) {
   let ingredientData = Object.assign({}, ingredient);
 
-  ingredientData.quantity = toFraction(ingredientData.quantity);
-
   const conversionDatum = conversionData.find((e) => {
     return e.name === ingredientData.name;
   });
@@ -19,14 +17,14 @@ export default function convertIngredient(ingredient) {
     unitFound: !!unitDatum,
   };
 
-  if (Number.isNaN(ingredientData.quantity)) {
+  if (Number.isNaN(toFraction(ingredientData.quantity))) {
     ingredientData.quantity = "NaN";
   } else {
     if (conversionDatum && unitDatum) {
-      ingredientData.quantity = ingredientData.quantity.mul(conversionDatum.gramsPerML).mul(unitDatum.mL);
+      ingredientData.quantity = toFraction(ingredientData.quantity).mul(conversionDatum.density).mul(unitDatum.mL).round();
       ingredientData.unit = "g";
     }
-    ingredientData.quantity = ingredientData.quantity.round().toString();
+    ingredientData.quantity = ingredientData.quantity.toString();
   }
 
   return ingredientData;

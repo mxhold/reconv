@@ -41,3 +41,9 @@ it('sets metadata even with NaN quantity', () => {
   const water_converted = convertIngredient(water);
   expect(water_converted.metadata).toEqual({ ingredientFound: true, unitFound: true });
 });
+
+it('does not turn the quantity into a decimal (from a fraction) unless conversion occurs', () => {
+  const water = { quantity: "1/2", unit: "invalid", name: "water" };
+  const water_converted = convertIngredient(water);
+  expect(water_converted.quantity).toEqual("1/2");
+});
