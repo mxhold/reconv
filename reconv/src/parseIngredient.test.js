@@ -28,3 +28,9 @@ it('allows anything in ingredient name', () => {
   const ingredient = { quantity: "1.2", unit: "c", name: "pork-pie & #5 ham* (important/note: 2% or nonfat?!)" };
   expect(parseIngredient(text)).toEqual(ingredient);
 });
+
+it('allows whole numbers with fractions', () => {
+  const text = "1 1/2c butter";
+  const ingredient = { quantity: "1 1/2", unit: "c", name: "butter" };
+  expect(parseIngredient(text)).toEqual(ingredient);
+});

@@ -1,18 +1,9 @@
 export default function parseIngredient(text) {
-  const re = /^(\d+\.?\d*)(\/(\d+))?([A-z]+) +(.+)$/;
+  const re = /^((\d )?(\d+\/)?(\d+\.)?(\d))([A-z]+) +(.+)$/;
   const matches = re.exec(text);
   if (matches != null) {
-    const quantity = formatQuantity(matches[1], matches[3]);
-    return { quantity: quantity, unit: matches[4], name: matches[5] };
+    return { quantity: matches[1], unit: matches[6], name: matches[7] };
   } else {
     return null;
-  }
-}
-
-function formatQuantity(n, d) {
-  if (d == null) {
-    return n;
-  } else {
-    return `${n}/${d}`;
   }
 }
