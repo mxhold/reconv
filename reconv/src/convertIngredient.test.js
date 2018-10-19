@@ -47,3 +47,9 @@ it('does not turn the quantity into a decimal (from a fraction) unless conversio
   const water_converted = convertIngredient(water);
   expect(water_converted.quantity).toEqual("1/2");
 });
+
+it('sets quantity to NaN on Fraction InvalidParameter', () => {
+  const water = { quantity: "1 2", unit: "c", name: "water" };
+  const water_converted = convertIngredient(water);
+  expect(water_converted.quantity).toEqual("NaN");
+});

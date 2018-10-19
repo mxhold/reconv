@@ -36,8 +36,8 @@ function toFraction(quantity) {
   } catch (e) {
     if (e instanceof Fraction.DivisionByZero) {
       quantity = NaN;
-    } else {
-      throw e;
+    } else if (e instanceof Fraction.InvalidParameter) {
+      quantity = NaN;
     }
   }
 
