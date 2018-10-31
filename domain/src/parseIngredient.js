@@ -4,9 +4,11 @@ function parseIngredient(string) {
   if (matches != null) {
     return { 
       success: true,
-      quantity: matches[1],
-      unit: matches[2],
-      name: matches[3],
+      result: {
+        quantity: matches[1],
+        unit: matches[2],
+        name: matches[3],
+      },
     };
   } else {
     return {

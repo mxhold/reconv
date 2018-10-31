@@ -4,9 +4,11 @@ it('parses a simple integer quantity', () => {
   expect(parseIngredient("12c butter")).toEqual(
     {
       success: true,
-      quantity: "12",
-      unit: "c",
-      name: "butter"
+      result: {
+        quantity: "12",
+        unit: "c",
+        name: "butter",
+      },
     }
   );
 });
@@ -15,9 +17,11 @@ it('parses a fraction quantity', () => {
   expect(parseIngredient("1/2c butter")).toEqual(
     {
       success: true,
-      quantity: "1/2",
-      unit: "c",
-      name: "butter"
+      result: {
+        quantity: "1/2",
+        unit: "c",
+        name: "butter",
+      },
     }
   );
 });
@@ -26,9 +30,11 @@ it('parses a decimal quantity', () => {
   expect(parseIngredient("1.5c butter")).toEqual(
     {
       success: true,
-      quantity: "1.5",
-      unit: "c",
-      name: "butter"
+      result: {
+        quantity: "1.5",
+        unit: "c",
+        name: "butter",
+      },
     }
   );
 });
@@ -37,9 +43,11 @@ it('parses a whole number quantity with fraction', () => {
   expect(parseIngredient("1 1/2c butter")).toEqual(
     {
       success: true,
-      quantity: "1 1/2",
-      unit: "c",
-      name: "butter"
+      result: {
+        quantity: "1 1/2",
+        unit: "c",
+        name: "butter",
+      },
     }
   );
 });
