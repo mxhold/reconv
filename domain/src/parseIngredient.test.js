@@ -56,7 +56,7 @@ it('errors on string without unit', () => {
   expect(parseIngredient("1/2 butter")).toEqual(
     {
       success: false,
-      error: 'provided string "1/2 butter" cannot be parsed with regex /^((?:\\d+ )?\\d+[\\/.]?\\d*)([A-z]+) +(.+)$/',
+      errorMessage: 'provided string "1/2 butter" cannot be parsed with regex /^((?:\\d+ )?\\d+[\\/.]?\\d*)([A-z]+) +(.+)$/',
     }
   );
 });

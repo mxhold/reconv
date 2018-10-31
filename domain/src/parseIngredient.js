@@ -13,7 +13,7 @@ function parseIngredient(string) {
   } else {
     return {
       success: false,
-      error: 'provided string "' + string + '" cannot be parsed with regex ' + re,
+      errorMessage: 'provided string "' + string + '" cannot be parsed with regex ' + re,
     };
   }
 }
