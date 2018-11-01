@@ -1,80 +1,67 @@
-const ingredients = require('../data/ingredients.json');
-const units = require('../data/units.json');
+var ingredients = require('../data/ingredients.json');
+var units = require('../data/units.json');
+var Fraction = require('fraction.js');
 
+var convertIngredientError = {
+  UNRECOGNIZED_UNIT: "unrecognized_unit",
+  UNRECOGNIZED_INGREDIENT: "unrecognized_ingredient",
+  DIVIDE_BY_ZERO: "divide_by_zero",
+  MALFORMED_QUANTITY: "malformed_quantity",
+};
+
+function failure(errors) {
+  return ({
+    success: false,
+    errors: errors,
+  });
+}
 
 function convertIngredient(ingredient) {
-  const resolvedUnit = units.find((e) => {
+  var resolvedUnit = units.find((e) => {
     return e.unit === ingredient.unit;
   });
 
-  const resolvedIngredient = ingredients.find((e) => {
+  var resolvedIngredient = ingredients.find((e) => {
     return e.name === ingredient.name;
   });
 
   if (resolvedUnit && resolvedIngredient) {
+    // TODO: check for resolvedIngredient.density and resolvedUnit.mL
+    var quantityFraction;
+    try {
+      quantityFraction = Fraction(ingredient.quantity);
+    } catch (e) {
+      if (e instanceof Fraction.DivisionByZero) {
+        return failure([convertIngredientError.DIVIDE_BY_ZERO]);
+      } else if (e instanceof Fraction.InvalidParameter) {
+        return failure([convertIngredientError.MALFORMED_QUANTITY]);
+      } else {
+        throw e;
+      }
+    }
+
     return ({
       success: true,
       result: {
-        quantity: "119",
+        quantity: quantityFraction.mul(resolvedIngredient.density).mul(resolvedUnit.mL).round().toString(),
         unit: "g",
-        name: "water",
+        name: resolvedIngredient.name,
       }
     });
   } else {
-    return ({
-      success: false,
-      error: {
-        unitFound: !!resolvedUnit,
-        ingredientFound: !!resolvedIngredient,
-      }
-    });
+    var errors = [];
+    if (!resolvedUnit) {
+      errors.push(convertIngredientError.UNRECOGNIZED_UNIT);
+    }
+    if (!resolvedIngredient) {
+      errors.push(convertIngredientError.UNRECOGNIZED_INGREDIENT);
+    }
+
+    return failure(errors);
   }
 }
 
-module.exports = convertIngredient;
-
-// import Fraction from 'fraction.js';
-// import conversionData from './ingredients.json';
-// import unitData from './units.json';
-
-// export default function convertIngredient(ingredient) {
-//   let ingredientData = Object.assign({}, ingredient);
-
-//   const conversionDatum = conversionData.find((e) => {
-//     return e.name === ingredientData.name;
-//   });
-//   const unitDatum = unitData.find((e) => {
-//     return e.unit === ingredientData.unit;
-//   });
-
-//   ingredientData.metadata = {
-//     ingredientFound: !!conversionDatum,
-//     unitFound: !!unitDatum,
-//   };
-
-//   if (Number.isNaN(toFraction(ingredientData.quantity))) {
-//     ingredientData.quantity = "NaN";
-//   } else {
-//     if (conversionDatum && unitDatum) {
-//       ingredientData.quantity = toFraction(ingredientData.quantity).mul(conversionDatum.density).mul(unitDatum.mL).round();
-//       ingredientData.unit = "g";
-//     }
-//     ingredientData.quantity = ingredientData.quantity.toString();
-//   }
-
-//   return ingredientData;
-// }
-
-// function toFraction(quantity) {
-//   try {
-//     quantity = Fraction(quantity);
-//   } catch (e) {
-//     if (e instanceof Fraction.DivisionByZero) {
-//       quantity = NaN;
-//     } else if (e instanceof Fraction.InvalidParameter) {
-//       quantity = NaN;
-//     }
-//   }
-
-//   return quantity;
-// }
+module.exports = [
+  convertIngredient,
+  convertIngredientError
+];

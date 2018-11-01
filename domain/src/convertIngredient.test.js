@@ -1,4 +1,4 @@
-const convertIngredient = require('./convertIngredient');
+var [convertIngredient, convertIngredientError] = require('./convertIngredient');
 
 it('converts from american volume units to metric weights', () => {
   expect(convertIngredient(
@@ -29,10 +29,7 @@ it('fails on unrecognized unit', () => {
   )).toEqual(
     {
       success: false,
-      error: {
-        unitFound: false,
-        ingredientFound: true,
-      }
+      errors: [convertIngredientError.UNRECOGNIZED_UNIT]
     }
   );
 });
@@ -47,10 +44,7 @@ it('fails on unrecognized ingredient', () => {
   )).toEqual(
     {
       success: false,
-      error: {
-        unitFound: true,
-        ingredientFound: false,
-      }
+      errors: [convertIngredientError.UNRECOGNIZED_INGREDIENT]
     }
   );
 });
@@ -65,10 +59,40 @@ it('fails on both unrecognized unit and unrecognized ingredient', () => {
   )).toEqual(
     {
       success: false,
-      error: {
-        unitFound: false,
-        ingredientFound: false,
-      }
+      errors: [
+        convertIngredientError.UNRECOGNIZED_UNIT,
+        convertIngredientError.UNRECOGNIZED_INGREDIENT
+      ]
+    }
+  );
+});
+
+it('fails on divide by zero', () => {
+  expect(convertIngredient(
+    {
+      quantity: "1/0",
+      unit: "c",
+      name: "water",
+    }
+  )).toEqual(
+    {
+      success: false,
+      errors: [convertIngredientError.DIVIDE_BY_ZERO]
+    }
+  );
+});
+
+it('fails on malformed quantity', () => {
+  expect(convertIngredient(
+    {
+      quantity: "1 1",
+      unit: "c",
+      name: "water",
+    }
+  )).toEqual(
+    {
+      success: false,
+      errors: [convertIngredientError.MALFORMED_QUANTITY]
     }
   );
 });
