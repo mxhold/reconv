@@ -9,11 +9,22 @@ var convertIngredientError = {
   MALFORMED_QUANTITY: "malformed_quantity",
 };
 
+function success(quantity, name) {
+  return {
+    success: true,
+    result: {
+      quantity: quantity,
+      unit: "g",
+      name: name,
+    }
+  };
+}
+
 function failure(errors) {
-  return ({
+  return {
     success: false,
     errors: errors,
-  });
+  };
 }
 
 function convertIngredient(ingredient) {
@@ -40,14 +51,13 @@ function convertIngredient(ingredient) {
       }
     }
 
-    return ({
-      success: true,
-      result: {
-        quantity: quantityFraction.mul(resolvedIngredient.density).mul(resolvedUnit.mL).round().toString(),
-        unit: "g",
-        name: resolvedIngredient.name,
-      }
-    });
+    var convertedQuantity = quantityFraction
+      .mul(resolvedIngredient.density)
+      .mul(resolvedUnit.mL)
+      .round()
+      .toString();
+
+    return success(convertedQuantity, resolvedIngredient.name);
   } else {
     var errors = [];
     if (!resolvedUnit) {
