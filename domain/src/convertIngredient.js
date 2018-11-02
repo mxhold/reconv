@@ -16,11 +16,7 @@ function convertIngredient(ingredient, unit_definitions, ingredient_definitions)
     return ingredient_definition.name === ingredient.name;
   });
 
-  var errors = {
-    quantity: undefined,
-    unit: undefined,
-    ingredient: undefined,
-  };
+  var errors = {};
 
   var quantityFraction;
   try {
@@ -48,7 +44,7 @@ function convertIngredient(ingredient, unit_definitions, ingredient_definitions)
   }
 
   for(var attribute in errors) {
-    if(errors[attribute] !== undefined) {
+    if(errors[attribute]) {
       return {
         success: false,
         errors: errors,
