@@ -39,24 +39,29 @@ function convertIngredient(ingredient, unit_definitions, ingredient_definitions)
   });
 
   if (resolvedUnit && resolvedIngredient) {
+    var errors = [];
     if (typeof resolvedUnit.mL !== 'number') {
-      return failure([convertIngredientError.MALFORMED_UNIT_DEFINITION]);
+      errors.push(convertIngredientError.MALFORMED_UNIT_DEFINITION);
     }
 
     if (typeof resolvedIngredient.density !== 'number') {
-      return failure([convertIngredientError.MALFORMED_INGREDIENT_DEFINITION]);
+      errors.push(convertIngredientError.MALFORMED_INGREDIENT_DEFINITION);
     }
     var quantityFraction;
     try {
       quantityFraction = Fraction(ingredient.quantity);
     } catch (e) {
       if (e instanceof Fraction.DivisionByZero) {
-        return failure([convertIngredientError.DIVIDE_BY_ZERO]);
+        errors.push(convertIngredientError.DIVIDE_BY_ZERO);
       } else if (e instanceof Fraction.InvalidParameter) {
-        return failure([convertIngredientError.MALFORMED_QUANTITY]);
+        errors.push(convertIngredientError.MALFORMED_QUANTITY);
       } else {
         throw e;
       }
+    }
+
+    if (errors.length > 0) {
+      return failure(errors);
     }
 
     var convertedQuantity = quantityFraction

@@ -147,3 +147,28 @@ it('fails on malformed ingredient definition', () => {
     }
   );
 });
+
+it('does not fail fast', () => {
+  var ingredient = {
+    quantity: "1/0",
+    unit: "c",
+    name: "milk",
+  };
+  var unit_defintions = [
+    { "unit": "c" } // missing "mL"
+  ];
+  var ingredient_definitions = [
+    { "name": "milk" } // missing "density"
+  ];
+  expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
+    {
+      success: false,
+      errors: [
+        convertIngredientError.MALFORMED_UNIT_DEFINITION,
+        convertIngredientError.MALFORMED_INGREDIENT_DEFINITION,
+        convertIngredientError.DIVIDE_BY_ZERO,
+      ]
+    }
+  );
+
+});
