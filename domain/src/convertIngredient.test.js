@@ -164,11 +164,10 @@ it('does not fail fast', () => {
     {
       success: false,
       errors: [
+        convertIngredientError.DIVIDE_BY_ZERO,
         convertIngredientError.MALFORMED_UNIT_DEFINITION,
         convertIngredientError.MALFORMED_INGREDIENT_DEFINITION,
-        convertIngredientError.DIVIDE_BY_ZERO,
       ]
     }
   );
-
 });

@@ -22,18 +22,6 @@ function convertIngredient(ingredient, unit_definitions, ingredient_definitions)
 
   var errors = [];
 
-  if (!resolvedUnit) {
-    errors.push(convertIngredientError.UNRECOGNIZED_UNIT);
-  } else if (typeof resolvedUnit.mL !== 'number') {
-    errors.push(convertIngredientError.MALFORMED_UNIT_DEFINITION);
-  }
-
-  if (!resolvedIngredient) {
-    errors.push(convertIngredientError.UNRECOGNIZED_INGREDIENT);
-  } else if (typeof resolvedIngredient.density !== 'number') {
-    errors.push(convertIngredientError.MALFORMED_INGREDIENT_DEFINITION);
-  }
-
   var quantityFraction;
   try {
     quantityFraction = Fraction(ingredient.quantity);
@@ -45,6 +33,18 @@ function convertIngredient(ingredient, unit_definitions, ingredient_definitions)
     } else {
       throw e;
     }
+  }
+
+  if (!resolvedUnit) {
+    errors.push(convertIngredientError.UNRECOGNIZED_UNIT);
+  } else if (typeof resolvedUnit.mL !== 'number') {
+    errors.push(convertIngredientError.MALFORMED_UNIT_DEFINITION);
+  }
+
+  if (!resolvedIngredient) {
+    errors.push(convertIngredientError.UNRECOGNIZED_INGREDIENT);
+  } else if (typeof resolvedIngredient.density !== 'number') {
+    errors.push(convertIngredientError.MALFORMED_INGREDIENT_DEFINITION);
   }
 
   if (errors.length > 0) {
