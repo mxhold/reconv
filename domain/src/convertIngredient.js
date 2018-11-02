@@ -1,11 +1,13 @@
 var Fraction = require('fraction.js');
 
 var convertIngredientError = {
-  UNRECOGNIZED_UNIT: "unrecognized_unit",
-  UNRECOGNIZED_INGREDIENT: "unrecognized_ingredient",
   DIVIDE_BY_ZERO: "divide_by_zero",
   MALFORMED_QUANTITY: "malformed_quantity",
+
+  UNRECOGNIZED_UNIT: "unrecognized_unit",
   MALFORMED_UNIT_DEFINITION: "malformed_unit_definition",
+
+  UNRECOGNIZED_INGREDIENT: "unrecognized_ingredient",
   MALFORMED_INGREDIENT_DEFINITION: "malformed_unit_definition",
 };
 
