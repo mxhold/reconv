@@ -2,13 +2,9 @@ var Fraction = require('fraction.js');
 
 var convertIngredientError = {
   DIVIDE_BY_ZERO: "divide_by_zero",
-  MALFORMED_QUANTITY: "malformed_quantity",
-
-  UNRECOGNIZED_UNIT: "unrecognized_unit",
-  MALFORMED_UNIT_DEFINITION: "malformed_unit_definition",
-
-  UNRECOGNIZED_INGREDIENT: "unrecognized_ingredient",
-  MALFORMED_INGREDIENT_DEFINITION: "malformed_unit_definition",
+  BAD_FORMAT: "bad_format",
+  BAD_DEFINITION: "bad_definition",
+  UNRECOGNIZED: "unrecognized",
 };
 
 function convertIngredient(ingredient, unit_definitions, ingredient_definitions) {
@@ -20,38 +16,44 @@ function convertIngredient(ingredient, unit_definitions, ingredient_definitions)
     return ingredient_definition.name === ingredient.name;
   });
 
-  var errors = [];
+  var errors = {
+    quantity: undefined,
+    unit: undefined,
+    ingredient: undefined,
+  };
 
   var quantityFraction;
   try {
     quantityFraction = Fraction(ingredient.quantity);
   } catch (e) {
     if (e instanceof Fraction.DivisionByZero) {
-      errors.push(convertIngredientError.DIVIDE_BY_ZERO);
+      errors.quantity = convertIngredientError.DIVIDE_BY_ZERO;
     } else if (e instanceof Fraction.InvalidParameter) {
-      errors.push(convertIngredientError.MALFORMED_QUANTITY);
+      errors.quantity = convertIngredientError.BAD_FORMAT;
     } else {
       throw e;
     }
   }
 
   if (!resolvedUnit) {
-    errors.push(convertIngredientError.UNRECOGNIZED_UNIT);
+    errors.unit = convertIngredientError.UNRECOGNIZED;
   } else if (typeof resolvedUnit.mL !== 'number') {
-    errors.push(convertIngredientError.MALFORMED_UNIT_DEFINITION);
+    errors.unit = convertIngredientError.BAD_DEFINITION;
   }
 
   if (!resolvedIngredient) {
-    errors.push(convertIngredientError.UNRECOGNIZED_INGREDIENT);
+    errors.ingredient = convertIngredientError.UNRECOGNIZED;
   } else if (typeof resolvedIngredient.density !== 'number') {
-    errors.push(convertIngredientError.MALFORMED_INGREDIENT_DEFINITION);
+    errors.ingredient = convertIngredientError.BAD_DEFINITION;
   }
 
-  if (errors.length > 0) {
-    return {
-      success: false,
-      errors: errors,
-    };
+  for(var attribute in errors) {
+    if(errors[attribute] !== undefined) {
+      return {
+        success: false,
+        errors: errors,
+      };
+    }
   }
 
   var convertedQuantity = quantityFraction

@@ -30,7 +30,9 @@ it('fails on unrecognized unit', () => {
   expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
     {
       success: false,
-      errors: [convertIngredientError.UNRECOGNIZED_UNIT]
+      errors: {
+        unit: convertIngredientError.UNRECOGNIZED,
+      }
     }
   );
 });
@@ -44,7 +46,9 @@ it('fails on unrecognized ingredient', () => {
   expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
     {
       success: false,
-      errors: [convertIngredientError.UNRECOGNIZED_INGREDIENT]
+      errors: {
+        ingredient: convertIngredientError.UNRECOGNIZED,
+      }
     }
   );
 });
@@ -58,10 +62,10 @@ it('fails on both unrecognized unit and unrecognized ingredient', () => {
   expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
     {
       success: false,
-      errors: [
-        convertIngredientError.UNRECOGNIZED_UNIT,
-        convertIngredientError.UNRECOGNIZED_INGREDIENT
-      ]
+      errors: {
+        unit: convertIngredientError.UNRECOGNIZED,
+        ingredient: convertIngredientError.UNRECOGNIZED,
+      }
     }
   );
 });
@@ -75,7 +79,9 @@ it('fails on divide by zero', () => {
   expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
     {
       success: false,
-      errors: [convertIngredientError.DIVIDE_BY_ZERO]
+      errors: {
+        quantity: convertIngredientError.DIVIDE_BY_ZERO,
+      }
     }
   );
 });
@@ -89,7 +95,9 @@ it('fails on malformed quantity', () => {
   expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
     {
       success: false,
-      errors: [convertIngredientError.MALFORMED_QUANTITY]
+      errors: {
+        quantity: convertIngredientError.BAD_FORMAT
+      }
     }
   );
 });
@@ -106,7 +114,9 @@ it('fails on malformed unit definition', () => {
   expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
     {
       success: false,
-      errors: [convertIngredientError.MALFORMED_UNIT_DEFINITION]
+      errors: {
+        unit: convertIngredientError.BAD_DEFINITION,
+      }
     }
   );
 
@@ -116,7 +126,9 @@ it('fails on malformed unit definition', () => {
   expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
     {
       success: false,
-      errors: [convertIngredientError.MALFORMED_UNIT_DEFINITION]
+      errors: {
+        unit: convertIngredientError.BAD_DEFINITION
+      }
     }
   );
 });
@@ -133,7 +145,9 @@ it('fails on malformed ingredient definition', () => {
   expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
     {
       success: false,
-      errors: [convertIngredientError.MALFORMED_INGREDIENT_DEFINITION]
+      errors: {
+        ingredient: convertIngredientError.BAD_DEFINITION
+      }
     }
   );
 
@@ -143,7 +157,9 @@ it('fails on malformed ingredient definition', () => {
   expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
     {
       success: false,
-      errors: [convertIngredientError.MALFORMED_INGREDIENT_DEFINITION]
+      errors: {
+        ingredient: convertIngredientError.BAD_DEFINITION
+      }
     }
   );
 });
@@ -163,11 +179,11 @@ it('does not fail fast', () => {
   expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
     {
       success: false,
-      errors: [
-        convertIngredientError.DIVIDE_BY_ZERO,
-        convertIngredientError.MALFORMED_UNIT_DEFINITION,
-        convertIngredientError.MALFORMED_INGREDIENT_DEFINITION,
-      ]
+      errors: {
+        quantity: convertIngredientError.DIVIDE_BY_ZERO,
+        unit: convertIngredientError.BAD_DEFINITION,
+        ingredient: convertIngredientError.BAD_DEFINITION,
+      }
     }
   );
 });
