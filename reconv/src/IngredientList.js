@@ -1,6 +1,6 @@
 import React from 'react';
 import {Ingredient, MalformedIngredient} from './Ingredient.js';
-import foo from '../domain';
+import { parseIngredient } from 'reconv-domain';
 import convertIngredient from './convertIngredient.js';
 import "./IngredientList.css";
 
@@ -8,10 +8,9 @@ export default function IngredientList(props) {
   const lines = props.lines;
 
   const ingredients = lines.split("\n").map((line, i) => {
-    const ingredientData = parseIngredient(line);
-    if (ingredientData == null) {
-      return <MalformedIngredient key={i} string={line} />;
-    } else {
+    const parseResult = parseIngredient(line);
+    if (parseResult.success) {
+      const ingredientData = parseResult.result;
       const ingredient = props.convert ? convertIngredient(ingredientData) : ingredientData;
       return <Ingredient
         key={i}
@@ -20,6 +19,8 @@ export default function IngredientList(props) {
         name={ingredient.name}
         metadata={ingredient.metadata}
         />;
+    } else {
+      return <MalformedIngredient key={i} string={line} />;
     }
   });
 
