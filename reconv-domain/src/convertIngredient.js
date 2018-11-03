@@ -1,4 +1,6 @@
 var Fraction = require('fraction.js');
+var default_unit_definitions = require('../data/units');
+var default_ingredient_definitions = require('../data/ingredients');
 
 var convertIngredientError = {
   DIVIDE_BY_ZERO: "divide_by_zero",
@@ -8,6 +10,10 @@ var convertIngredientError = {
 };
 
 function convertIngredient(ingredient, unit_definitions, ingredient_definitions) {
+  if (arguments.length === 1) {
+    unit_definitions = default_unit_definitions;
+    ingredient_definitions = default_ingredient_definitions;
+  }
   var resolvedUnit = unit_definitions.find((unit_defintion) => {
     return unit_defintion.unit === ingredient.unit;
   });

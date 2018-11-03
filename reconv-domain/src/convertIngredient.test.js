@@ -21,6 +21,24 @@ it('converts from american volume units to metric weights', () => {
   );
 });
 
+it('uses default unit and ingredient data if none specified', () => {
+  var ingredient = {
+    quantity: "1/2",
+    unit: "c",
+    name: "milk",
+  };
+  expect(convertIngredient(ingredient)).toEqual(
+    {
+      success: true,
+      result: {
+        quantity: "122",
+        unit: "g",
+        name: "milk",
+      }
+    }
+  );
+});
+
 it('fails on unrecognized unit', () => {
   var ingredient = {
     quantity: "1/2",
