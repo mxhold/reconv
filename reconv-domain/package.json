@@ -1,5 +1,5 @@
 {
-  "name": "reconv",
+  "name": "reconv-domain",
   "version": "1.0.0",
   "description": "recipe converter",
   "main": "index.js",

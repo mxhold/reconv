@@ -1,6 +1,6 @@
 import React from 'react';
 import {Ingredient, MalformedIngredient} from './Ingredient.js';
-import parseIngredient from './parseIngredient.js';
+import foo from '../domain';
 import convertIngredient from './convertIngredient.js';
 import "./IngredientList.css";
 
