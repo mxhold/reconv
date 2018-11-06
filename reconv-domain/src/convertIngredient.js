@@ -14,6 +14,7 @@ function convertIngredient(ingredient, unit_definitions, ingredient_definitions)
     unit_definitions = default_unit_definitions;
     ingredient_definitions = default_ingredient_definitions;
   }
+  
   var resolvedUnit = unit_definitions.find((unit_defintion) => {
     return unit_defintion.unit === ingredient.unit;
   });

@@ -11,5 +11,6 @@
   { "name": "baking powder", "density": 0.9726203537 },
   { "name": "baking soda", "density": 0.9134163392 },
   { "name": "vegetable oil", "density": 0.9234623332 },
+  { "name": "BAD_DEFN", "density": null },
   { "name": "water", "density": 1 }
 ]
