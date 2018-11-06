@@ -20,7 +20,6 @@ export default class IngredientListInput extends React.Component {
     return (
       <div className="ingredient-list-input">
         <textarea spellCheck="false" value={this.state.value} onChange={this.handleChange} />
-        <IngredientList lines={this.state.value} convert={false} />
         <IngredientList lines={this.state.value} convert={true} />
       </div>
     );
