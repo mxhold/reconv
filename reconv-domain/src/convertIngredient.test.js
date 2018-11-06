@@ -1,6 +1,6 @@
 var [convertIngredient, convertIngredientError] = require('./convertIngredient');
 
-var unit_defintions = [{ "unit": "c", "mL": 237 }];
+var unit_definitions = [{ "unit": "c", "mL": 237 }];
 var ingredient_definitions = [{ "name": "milk", "density": 1.032903803 }];
 
 it('converts from american volume units to metric weights', () => {
@@ -9,7 +9,7 @@ it('converts from american volume units to metric weights', () => {
     unit: "c",
     name: "milk",
   };
-  expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
+  expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
     {
       success: true,
       result: {
@@ -39,13 +39,33 @@ it('uses default unit and ingredient data if none specified', () => {
   );
 });
 
+it('uses default unit data if none specified', () => {
+  var ingredient = {
+    quantity: "1/2",
+    unit: "c",
+    name: "malk",
+  };
+  var ingredient_definitions = [{ "name": "malk", "density": 1.032903803 }];
+
+  expect(convertIngredient(ingredient, ingredient_definitions)).toEqual(
+    {
+      success: true,
+      result: {
+        quantity: "122",
+        unit: "g",
+        name: "malk",
+      }
+    }
+  );
+});
+
 it('fails on unrecognized unit', () => {
   var ingredient = {
     quantity: "1/2",
     unit: "plorp",
     name: "milk",
   };
-  expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
+  expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
     {
       success: false,
       errors: {
@@ -61,7 +81,7 @@ it('fails on unrecognized ingredient', () => {
     unit: "c",
     name: "floop",
   }
-  expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
+  expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
     {
       success: false,
       errors: {
@@ -77,7 +97,7 @@ it('fails on both unrecognized unit and unrecognized ingredient', () => {
     unit: "plorp",
     name: "floop",
   };
-  expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
+  expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
     {
       success: false,
       errors: {
@@ -94,7 +114,7 @@ it('fails on divide by zero', () => {
     unit: "c",
     name: "milk",
   };
-  expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
+  expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
     {
       success: false,
       errors: {
@@ -110,7 +130,7 @@ it('fails on malformed quantity', () => {
     unit: "c",
     name: "milk",
   };
-  expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
+  expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
     {
       success: false,
       errors: {
@@ -126,10 +146,10 @@ it('fails on malformed unit definition', () => {
     unit: "c",
     name: "milk",
   };
-  var unit_defintions = [
+  var unit_definitions = [
     { "unit": "c" } // missing "mL"
   ];
-  expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
+  expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
     {
       success: false,
       errors: {
@@ -138,10 +158,10 @@ it('fails on malformed unit definition', () => {
     }
   );
 
-  var unit_defintions = [
+  var unit_definitions = [
     { "unit": "c", "mL": "1" } // mL not a number
   ];
-  expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
+  expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
     {
       success: false,
       errors: {
@@ -160,7 +180,7 @@ it('fails on malformed ingredient definition', () => {
   var ingredient_definitions = [
     { "name": "milk" } // missing "density"
   ];
-  expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
+  expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
     {
       success: false,
       errors: {
@@ -172,7 +192,7 @@ it('fails on malformed ingredient definition', () => {
   var ingredient_definitions = [
     { "name": "milk", "density": "1" } // density not a number
   ];
-  expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
+  expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
     {
       success: false,
       errors: {
@@ -188,13 +208,13 @@ it('does not fail fast', () => {
     unit: "c",
     name: "milk",
   };
-  var unit_defintions = [
+  var unit_definitions = [
     { "unit": "c" } // missing "mL"
   ];
   var ingredient_definitions = [
     { "name": "milk" } // missing "density"
   ];
-  expect(convertIngredient(ingredient, unit_defintions, ingredient_definitions)).toEqual(
+  expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
     {
       success: false,
       errors: {
