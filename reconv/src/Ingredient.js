@@ -3,18 +3,27 @@ import './Ingredient.css';
 
 export function Ingredient(props) {
   let classNames = "ingredient";
-  if (props.metadata) {
-    if (!props.metadata.unitFound) {
+  if (props.errors) {
+    if (props.errors.unitNotFound) {
       classNames += " ingredient--unit-not-found";
     }
-    if (!props.metadata.ingredientFound) {
+    if (props.errors.ingredientNotFound) {
       classNames += " ingredient--ingredient-not-found";
+    }
+    if (props.errors.badQuantity) {
+      classNames += " ingredient--bad-quantity";
+    }
+    if (props.errors.badUnitDefinition) {
+      classNames += " ingredient--bad-unit-definition";
+    }
+    if (props.errors.badIngredientDefinition) {
+      classNames += " ingredient--bad-ingredient-definition";
     }
   }
 
   return (
     <div className={classNames}>
-      {quantity(props.quantity)}<span className="ingredient-unit">{props.unit}</span> <span className="ingredient-name">{props.name}</span>
+      <span className="ingredient-quantity">{props.quantity}</span><span className="ingredient-unit">{props.unit}</span> <span className="ingredient-name">{props.name}</span>
     </div>
   );
 }
@@ -25,12 +34,4 @@ export function MalformedIngredient(props) {
       <span className="ingredient--malformed">{props.string}</span>
     </div>
   );
-}
-
-function quantity(quantity) {
-  let classNames = "ingredient-quantity";
-  if (quantity === "NaN") {
-    classNames += " ingredient-quantity--nan";
-  }
-  return <span className={classNames}>{quantity}</span>;
 }

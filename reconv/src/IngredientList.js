@@ -1,6 +1,6 @@
 import React from 'react';
 import {Ingredient, MalformedIngredient} from './Ingredient.js';
-import { parseIngredient, convertIngredient } from 'reconv-domain';
+import { parseIngredient, convertIngredient, convertIngredientError } from 'reconv-domain';
 import "./IngredientList.css";
 
 export default function IngredientList(props) {
@@ -19,12 +19,15 @@ export default function IngredientList(props) {
           const errors = convertResult.errors;
 
           ingredient = {
-            quantity: errors.quantity ? "NaN" : parsedIngredient.quantity,
+            quantity: parsedIngredient.quantity,
             unit: parsedIngredient.unit,
             name: parsedIngredient.name,
-            metadata: {
-              unitFound: !errors.unit,
-              ingredientFound: !errors.ingredient,
+            errors: {
+              unitNotFound: errors.unit === convertIngredientError.UNRECOGNIZED,
+              ingredientNotFound: errors.ingredient === convertIngredientError.UNRECOGNIZED,
+              badQuantity: errors.quantity, // no need to distinguish between BAD_FORMAT and DIVIDE_BY_ZERO yet
+              badUnitDefinition: errors.unit === convertIngredientError.BAD_DEFINITION,
+              badIngredientDefinition: errors.ingredient === convertIngredientError.BAD_DEFINITION,
             }
           }
         }
@@ -36,7 +39,7 @@ export default function IngredientList(props) {
         quantity={ingredient.quantity}
         unit={ingredient.unit}
         name={ingredient.name}
-        metadata={ingredient.metadata}
+        errors={ingredient.errors}
         />;
     } else {
       return <MalformedIngredient key={i} string={line} />;

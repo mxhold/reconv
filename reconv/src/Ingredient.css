@@ -10,6 +10,16 @@
   text-decoration: wavy underline red;
 }
 
-.ingredient-quantity--nan {
+.ingredient--bad-quantity .ingredient-quantity {
   text-decoration: wavy underline red;
+}
+
+.ingredient--bad-unit-definition .ingredient-unit {
+  background-color: red;
+  color: white;
+}
+
+.ingredient--bad-ingredient-definition .ingredient-name {
+  background-color: red;
+  color: white;
 }
