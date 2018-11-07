@@ -12,7 +12,7 @@ export default function IngredientList(props) {
       let ingredient;
       if (props.convert) {
         const parsedIngredient = parseResult.result;
-        const convertResult = convertIngredient(parsedIngredient);
+        const convertResult = convertIngredient(parsedIngredient, props.ingredientDefinitions);
         if (convertResult.success) {
           ingredient = convertResult.result;
         } else {
