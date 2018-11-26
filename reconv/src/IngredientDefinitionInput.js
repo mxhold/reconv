@@ -27,7 +27,7 @@ export default class IngredientDefinitionInput extends React.Component {
     return (
       <div className="ingredient-definition-input">
         <textarea spellCheck="false" value={this.state.value} onChange={this.handleChange} />
-        <IngredientListInput ingredientDefinitions={this.deserializeIngredientDefinitions(this.state.value)} value={this.props.lines} />
+        <IngredientListInput ingredientDefinitions={this.deserializeIngredientDefinitions(this.state.value)} value={this.props.lines} unitDefinitions={this.props.unitDefinitions} />
       </div>
     );
   }
