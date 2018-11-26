@@ -10,29 +10,25 @@ export default function IngredientList(props) {
     const parseResult = parseIngredient(line);
     if (parseResult.success) {
       let ingredient;
-      if (props.convert) {
-        const parsedIngredient = parseResult.result;
-        const convertResult = convertIngredient(parsedIngredient, props.ingredientDefinitions, props.unitDefinitions);
-        if (convertResult.success) {
-          ingredient = convertResult.result;
-        } else {
-          const errors = convertResult.errors;
+      const parsedIngredient = parseResult.result;
+      const convertResult = convertIngredient(parsedIngredient, props.ingredientDefinitions, props.unitDefinitions);
+      if (convertResult.success) {
+        ingredient = convertResult.result;
+      } else {
+        const errors = convertResult.errors;
 
-          ingredient = {
-            quantity: parsedIngredient.quantity,
-            unit: parsedIngredient.unit,
-            name: parsedIngredient.name,
-            errors: {
-              unitNotFound: errors.unit === convertIngredientError.UNRECOGNIZED,
-              ingredientNotFound: errors.ingredient === convertIngredientError.UNRECOGNIZED,
-              badQuantity: errors.quantity, // no need to distinguish between BAD_FORMAT and DIVIDE_BY_ZERO yet
-              badUnitDefinition: errors.unit === convertIngredientError.BAD_DEFINITION,
-              badIngredientDefinition: errors.ingredient === convertIngredientError.BAD_DEFINITION,
-            }
+        ingredient = {
+          quantity: parsedIngredient.quantity,
+          unit: parsedIngredient.unit,
+          name: parsedIngredient.name,
+          errors: {
+            unitNotFound: errors.unit === convertIngredientError.UNRECOGNIZED,
+            ingredientNotFound: errors.ingredient === convertIngredientError.UNRECOGNIZED,
+            badQuantity: errors.quantity, // no need to distinguish between BAD_FORMAT and DIVIDE_BY_ZERO yet
+            badUnitDefinition: errors.unit === convertIngredientError.BAD_DEFINITION,
+            badIngredientDefinition: errors.ingredient === convertIngredientError.BAD_DEFINITION,
           }
         }
-      } else {
-        ingredient = parseResult.result;
       }
       return <Ingredient
         key={i}
