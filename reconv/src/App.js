@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import UnitDefinitionInput from './UnitDefinitionInput';
+import DefinitionInput from './DefinitionInput';
 
 class App extends Component {
   render() {
@@ -11,7 +11,7 @@ class App extends Component {
 
     return (
       <div>
-        <UnitDefinitionInput lines={lines} ingredientDefinitions={ingredientDefinitions} unitDefinitions={unitDefinitions} />
+        <DefinitionInput lines={lines} ingredientDefinitions={ingredientDefinitions} unitDefinitions={unitDefinitions} />
       </div>
     );
   }
