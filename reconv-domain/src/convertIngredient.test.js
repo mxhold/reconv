@@ -169,6 +169,18 @@ it('fails on malformed unit definition', () => {
       }
     }
   );
+
+  var unit_definitions = [
+    { "unit": "c", "mL": NaN } // mL NaN
+  ];
+  expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
+    {
+      success: false,
+      errors: {
+        unit: convertIngredientError.BAD_DEFINITION
+      }
+    }
+  );
 });
 
 it('fails on malformed ingredient definition', () => {
@@ -191,6 +203,18 @@ it('fails on malformed ingredient definition', () => {
 
   var ingredient_definitions = [
     { "name": "milk", "density": "1" } // density not a number
+  ];
+  expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
+    {
+      success: false,
+      errors: {
+        ingredient: convertIngredientError.BAD_DEFINITION
+      }
+    }
+  );
+
+  var ingredient_definitions = [
+    { "name": "milk", "density": NaN } // density NaN
   ];
   expect(convertIngredient(ingredient, ingredient_definitions, unit_definitions)).toEqual(
     {

@@ -44,13 +44,13 @@ function convertIngredient(ingredient, ingredient_definitions, unit_definitions)
 
   if (!resolvedUnit) {
     errors.unit = convertIngredientError.UNRECOGNIZED;
-  } else if (typeof resolvedUnit.mL !== 'number') {
+  } else if (typeof resolvedUnit.mL !== 'number' || isNaN(resolvedUnit.mL)) {
     errors.unit = convertIngredientError.BAD_DEFINITION;
   }
 
   if (!resolvedIngredient) {
     errors.ingredient = convertIngredientError.UNRECOGNIZED;
-  } else if (typeof resolvedIngredient.density !== 'number') {
+  } else if (typeof resolvedIngredient.density !== 'number' || isNaN(resolvedIngredient.density)) {
     errors.ingredient = convertIngredientError.BAD_DEFINITION;
   }
 
