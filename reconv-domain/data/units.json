@@ -6,6 +6,6 @@
   { "unit": "pt", "mL": 473.176 },
   { "unit": "qt", "mL": 946.353 },
   { "unit": "gal", "mL": 3785.41 },
-  { "unit": "BAD_DEFN", "mL": null },
-  { "unit": "L", "mL": 1000 }
+  { "unit": "L", "mL": 1000 },
+  { "unit": "BAD_DEFN", "mL": null }
 ]
