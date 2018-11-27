@@ -11,7 +11,9 @@ a **re**cipe **conv**erter
 
 Nice to haves:
 
-- two-way binding so changes to the output will be reflected in the input
+- Baker's percentage
+- Levenshtein distance spelling correct
+- Import/export definitions via file
 
 ### Inputs
 a recipe ingredient list with American/volumetric units
