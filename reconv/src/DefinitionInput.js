@@ -41,10 +41,12 @@ export default class DefinitionInput extends React.Component {
     return (
       <div className="definition-input">
         <div className="unit-definition-input">
+          <h2>Units</h2>
           <textarea spellCheck="false" value={this.state.unitDefinitions} onChange={this.handleUnitDefinitionChange} />
         </div>
 
         <div className="ingredient-definition-input">
+          <h2>Ingredients</h2>
           <textarea spellCheck="false" value={this.state.ingredientDefinitions} onChange={this.handleIngredientDefinitionChange} />
         </div>
 

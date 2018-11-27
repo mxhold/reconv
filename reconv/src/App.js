@@ -13,6 +13,7 @@ class App extends Component {
 
     return (
       <div>
+        <h1>Recipe Converter</h1>
         <DefinitionInput lines={lines} ingredientDefinitions={ingredientDefinitions} unitDefinitions={unitDefinitions} />
       </div>
     );
