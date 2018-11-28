@@ -8,7 +8,7 @@ class App extends Component {
     let ingredientDefinitions = defaultIngredientDefinitions.map( (ingredient) => { return ingredient.name + "," + ingredient.density }).join("\n");
     let unitDefinitions = defaultUnitDefinitions.map( (unit) => { return unit.unit + "," + unit.mL }).join("\n");
 
-    let lines = "1/2c butter\n1.2c water\n1c malk\n1x butter\n1/0c water";
+    let lines = "1/2c butter\n1c sugar\n2 eggs, beaten\n3 bananas, crushed\n1 1/2c flour\n1t baking soda\n1/2t salt\n1/2t vanilla";
 
     return (
       <div>
