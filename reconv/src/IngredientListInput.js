@@ -19,10 +19,14 @@ export default class IngredientListInput extends React.Component {
   render() {
     return (
       <div className="ingredient-list-input">
-        <h2>Recipe</h2>
-        <textarea spellCheck="false" value={this.state.value} onChange={this.handleChange} />
-        <h2>Converted Recipe</h2>
-        <IngredientList lines={this.state.value} ingredientDefinitions={this.props.ingredientDefinitions} unitDefinitions={this.props.unitDefinitions} />
+        <div className="recipe-input">
+          <h2>Recipe</h2>
+          <textarea spellCheck="false" value={this.state.value} onChange={this.handleChange} />
+        </div>
+        <div className="recipe-output">
+          <h2>Converted Recipe</h2>
+          <IngredientList lines={this.state.value} ingredientDefinitions={this.props.ingredientDefinitions} unitDefinitions={this.props.unitDefinitions} />
+        </div>
       </div>
     );
   }

@@ -2,7 +2,6 @@
   display: flex;
 }
 
-.ingredient-list-input > * {
+.recipe-input {
   margin-right: 10px;
 }
-
