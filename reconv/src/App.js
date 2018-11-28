@@ -9,7 +9,7 @@ class App extends Component {
     let ingredientDefinitions = defaultIngredientDefinitions.map( (ingredient) => { return ingredient.name + "," + ingredient.density }).join("\n");
     let unitDefinitions = defaultUnitDefinitions.map( (unit) => { return unit.unit + "," + unit.mL }).join("\n");
 
-    let lines = "1/2c butter\n1.2c water\n1c malk\n1x butter\n1/0c water\n1BAD_DEFN water\n1c BAD_DEFN\nnonsense";
+    let lines = "1/2c butter\n1.2c water\n1c malk\n1x butter\n1/0c water";
 
     return (
       <div>
