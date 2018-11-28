@@ -1,5 +1,5 @@
 .malformed {
-  composes: mildError from "../styles/typography.module.css";
+  composes: ignored from "../styles/typography.module.css";
 }
 
 .unitNotFound {

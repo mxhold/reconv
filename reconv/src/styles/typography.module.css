@@ -1,5 +1,5 @@
 .mildError {
-  text-decoration: wavy underline red;
+  text-decoration: wavy underline salmon;
 }
 
 .seriousError {
@@ -10,4 +10,8 @@
 .csvExample {
   color: grey;
   font-family: monospace;
+}
+
+.ignored {
+  color: grey;
 }
