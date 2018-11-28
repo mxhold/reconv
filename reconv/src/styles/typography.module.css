@@ -1,0 +1,13 @@
+.mildError {
+  text-decoration: wavy underline red;
+}
+
+.seriousError {
+  background-color: red;
+  color: white;
+}
+
+.csvExample {
+  color: grey;
+  font-family: monospace;
+}

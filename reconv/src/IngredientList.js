@@ -1,7 +1,7 @@
 import React from 'react';
 import {Ingredient, MalformedIngredient} from './Ingredient.js';
 import { parseIngredient, convertIngredient, convertIngredientError } from 'reconv-domain';
-import "./IngredientList.css";
+import styles from "./IngredientList.module.css";
 
 export default function IngredientList(props) {
   const lines = props.lines;
@@ -43,7 +43,7 @@ export default function IngredientList(props) {
   });
 
   return (
-    <div className="ingredient-list">
+    <div className={styles.ingredientList}>
       {ingredients}
     </div>
   );

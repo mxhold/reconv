@@ -1,37 +1,37 @@
 import React from 'react';
-import './Ingredient.css';
+import styles from './Ingredient.module.css';
 
 export function Ingredient(props) {
-  let classNames = "ingredient";
+  let quantityClassName, unitClassName, ingredientClassName;
   if (props.errors) {
     if (props.errors.unitNotFound) {
-      classNames += " ingredient--unit-not-found";
+      unitClassName = styles.unitNotFound;
     }
     if (props.errors.ingredientNotFound) {
-      classNames += " ingredient--ingredient-not-found";
+      ingredientClassName = styles.ingredientNotFound;
     }
     if (props.errors.badQuantity) {
-      classNames += " ingredient--bad-quantity";
+      quantityClassName = styles.badQuantity;
     }
     if (props.errors.badUnitDefinition) {
-      classNames += " ingredient--bad-unit-definition";
+      unitClassName = styles.badUnitDefinition;
     }
     if (props.errors.badIngredientDefinition) {
-      classNames += " ingredient--bad-ingredient-definition";
+      ingredientClassName = styles.badIngredientDefinition;
     }
   }
 
   return (
-    <div className={classNames}>
-      <span className="ingredient-quantity">{props.quantity}</span><span className="ingredient-unit">{props.unit}</span> <span className="ingredient-name">{props.name}</span>
+    <div>
+      <span className={quantityClassName}>{props.quantity}</span><span className={unitClassName}>{props.unit}</span> <span className={ingredientClassName}>{props.name}</span>
     </div>
   );
 }
 
 export function MalformedIngredient(props) {
   return (
-    <div className="ingredient">
-      <span className="ingredient--malformed">{props.string}</span>
+    <div>
+      <span className={styles.malformed}>{props.string}</span>
     </div>
   );
 }

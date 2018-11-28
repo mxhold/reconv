@@ -1,0 +1,5 @@
+.ingredientList {
+  border: 1px solid black;
+  padding: 2px;
+  composes: box from "./styles/layout.module.css";
+}

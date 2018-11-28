@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import DefinitionInput from './DefinitionInput';
 import { defaultIngredientDefinitions, defaultUnitDefinitions } from 'reconv-domain';
 
@@ -14,6 +13,7 @@ class App extends Component {
     return (
       <div>
         <h1>Recipe Converter</h1>
+        <p>Paste a recipe below and watch as it is <span role="img" aria-label="sparkle">✨</span>magically<span role="img" aria-label="sparkle">✨</span> converted from US volumetric units to grams!</p>
         <DefinitionInput lines={lines} ingredientDefinitions={ingredientDefinitions} unitDefinitions={unitDefinitions} />
       </div>
     );

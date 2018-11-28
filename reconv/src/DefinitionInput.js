@@ -1,6 +1,6 @@
 import React from 'react';
 import IngredientListInput from './IngredientListInput.js';
-import "./DefinitionInput.css";
+import styles from "./DefinitionInput.module.css";
 
 export default class DefinitionInput extends React.Component {
   constructor(props) {
@@ -48,31 +48,41 @@ export default class DefinitionInput extends React.Component {
     let definitions;
     if (this.state.showDefinitions) {
       definitions = (
-        <div>
-          <div className="unit-definition-input">
+        <div className={styles.wrapper}>
+          <div className={styles.child}>
             <h2>Unit definitions</h2>
-            <p className="definition-format-example">unit,mL</p>
-            <textarea spellCheck="false" value={this.state.unitDefinitions} onChange={this.handleUnitDefinitionChange} />
+            <p className={styles.definitionFormatExample}>unit,mL</p>
+            <textarea
+              spellCheck="false"
+              value={this.state.unitDefinitions}
+              onChange={this.handleUnitDefinitionChange}
+              className={styles.definitionField}
+            />
           </div>
 
-          <div className="ingredient-definition-input">
+          <div className={styles.child}>
             <h2>Ingredient definitions</h2>
-            <p className="definition-format-example">ingredient,density</p>
-            <textarea spellCheck="false" value={this.state.ingredientDefinitions} onChange={this.handleIngredientDefinitionChange} />
+            <p className={styles.definitionFormatExample}>ingredient,density</p>
+            <textarea
+              spellCheck="false"
+              value={this.state.ingredientDefinitions}
+              onChange={this.handleIngredientDefinitionChange}
+              className={styles.definitionField}
+            />
           </div>
         </div>
       );
     }
 
     return (
-      <div className="definition-input">
+      <div>
         <IngredientListInput
         value={this.props.lines}
         ingredientDefinitions={this.deserializeIngredientDefinitions(this.state.ingredientDefinitions)}
         unitDefinitions={this.deserializeUnitDefinitions(this.state.unitDefinitions)}
         />
 
-        <div className="show-definition">
+        <div className={styles.showDefinitionsToggle}>
           <label>
             <input type="checkbox" value={this.state.showDefinitions} onChange={this.handleShowDefinitionsChange} />
             Show unit/ingredient definitions

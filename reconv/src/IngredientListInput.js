@@ -1,5 +1,5 @@
 import React from 'react';
-import "./IngredientListInput.css";
+import styles from "./IngredientListInput.module.css";
 import IngredientList from './IngredientList.js';
 
 export default class IngredientListInput extends React.Component {
@@ -18,12 +18,17 @@ export default class IngredientListInput extends React.Component {
 
   render() {
     return (
-      <div className="ingredient-list-input">
-        <div className="recipe-input">
+      <div className={styles.wrapper}>
+        <div className={styles.input}>
           <h2>Recipe</h2>
-          <textarea spellCheck="false" value={this.state.value} onChange={this.handleChange} />
+          <textarea
+            spellCheck="false"
+            value={this.state.value}
+            onChange={this.handleChange}
+            className={styles.inputField}
+          />
         </div>
-        <div className="recipe-output">
+        <div className={styles.output}>
           <h2>Converted Recipe</h2>
           <IngredientList lines={this.state.value} ingredientDefinitions={this.props.ingredientDefinitions} unitDefinitions={this.props.unitDefinitions} />
         </div>
