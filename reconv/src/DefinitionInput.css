@@ -3,3 +3,7 @@
   color: grey;
   font-family: monospace;
 }
+
+.show-definition {
+  margin: 15px 0;
+}

@@ -19,3 +19,7 @@ textarea {
 body {
   margin-bottom: 200px;
 }
+
+input[type=checkbox] {
+  margin-right: 5px;
+}
