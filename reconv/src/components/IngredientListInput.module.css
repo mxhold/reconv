@@ -1,0 +1,11 @@
+.wrapper {
+  composes: flexWrap from "../styles/layout.module.css";
+}
+
+.input, .output {
+  composes: flexChild from "../styles/layout.module.css";
+}
+
+.inputField {
+  composes: box from "../styles/layout.module.css";
+}

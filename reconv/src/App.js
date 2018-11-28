@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DefinitionInput from './DefinitionInput';
+import DefinitionInput from './components/DefinitionInput';
 import { defaultIngredientDefinitions, defaultUnitDefinitions } from 'reconv-domain';
 
 class App extends Component {
