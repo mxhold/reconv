@@ -4,17 +4,19 @@ import styles from './Ingredient.module.css';
 export function Ingredient(props) {
   let quantityClassName, unitClassName, ingredientClassName;
   if (props.errors) {
-    if (props.errors.unitNotFound) {
-      unitClassName = styles.unitNotFound;
-    }
-    if (props.errors.ingredientNotFound) {
-      ingredientClassName = styles.ingredientNotFound;
-    }
     if (props.errors.badQuantity) {
       quantityClassName = styles.badQuantity;
     }
+
+    if (props.errors.unitNotFound) {
+      unitClassName = styles.unitNotFound;
+    }
     if (props.errors.badUnitDefinition) {
       unitClassName = styles.badUnitDefinition;
+    }
+
+    if (props.errors.ingredientNotFound) {
+      ingredientClassName = styles.ingredientNotFound;
     }
     if (props.errors.badIngredientDefinition) {
       ingredientClassName = styles.badIngredientDefinition;
