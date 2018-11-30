@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./RecipeInput.module.css";
-import IngredientList from './IngredientList.js';
+import ConvertedRecipe from './ConvertedRecipe.js';
 
 export default class RecipeInput extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ export default class RecipeInput extends React.Component {
         </div>
         <div className={styles.output}>
           <h2>Converted Recipe</h2>
-          <IngredientList lines={this.state.value} ingredientDefinitions={this.props.ingredientDefinitions} unitDefinitions={this.props.unitDefinitions} />
+          <ConvertedRecipe lines={this.state.value} ingredientDefinitions={this.props.ingredientDefinitions} unitDefinitions={this.props.unitDefinitions} />
         </div>
       </div>
     );

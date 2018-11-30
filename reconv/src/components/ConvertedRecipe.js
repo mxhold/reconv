@@ -1,9 +1,9 @@
 import React from 'react';
 import {Ingredient, MalformedIngredient} from './Ingredient.js';
 import { parseIngredient, convertIngredient, convertIngredientError } from 'reconv-domain';
-import styles from "./IngredientList.module.css";
+import styles from "./ConvertedRecipe.module.css";
 
-export default function IngredientList(props) {
+export default function ConvertedRecipe(props) {
   const lines = props.lines;
 
   const ingredients = lines.split("\n").map((line, i) => {
@@ -43,7 +43,7 @@ export default function IngredientList(props) {
   });
 
   return (
-    <div className={styles.ingredientList}>
+    <div className={styles.convertedRecipe}>
       {ingredients}
     </div>
   );
