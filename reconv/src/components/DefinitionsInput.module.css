@@ -1,8 +1,0 @@
-.definitionField {
-  composes: box from "../styles/layout.module.css";
-}
-
-.definitionFormatExample {
-  margin: 0;
-  composes: csvExample from "../styles/typography.module.css";
-}
