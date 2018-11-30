@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from "./IngredientListInput.module.css";
+import styles from "./RecipeInput.module.css";
 import IngredientList from './IngredientList.js';
 
-export default class IngredientListInput extends React.Component {
+export default class RecipeInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
