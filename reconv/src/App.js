@@ -24,11 +24,14 @@ class App extends React.Component {
 
   render() {
     let lines = "1/2c butter\n1c sugar\n2 eggs, beaten\n3 bananas, crushed\n1 1/2c flour\n1t baking soda\n1/2t salt\n1/2t vanilla";
+    let sparkleEmoji = <span role="img" aria-label="sparkle">✨</span>;
 
     return (
       <div>
         <h1>Recipe Converter</h1>
-        <p>Paste a recipe below and watch as it is <span role="img" aria-label="sparkle">✨</span>magically<span role="img" aria-label="sparkle">✨</span> converted from US volumetric units to grams!</p>
+        <p>
+          Paste a recipe below and watch as it is {sparkleEmoji}magically{sparkleEmoji} converted from US volumetric units to grams!
+        </p>
 
         <RecipeInput
           value={lines}

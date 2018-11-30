@@ -30,7 +30,11 @@ export default class RecipeInput extends React.Component {
         </div>
         <div className={styles.output}>
           <h2>Converted Recipe</h2>
-          <ConvertedRecipe lines={this.state.value} ingredientDefinitions={this.props.ingredientDefinitions} unitDefinitions={this.props.unitDefinitions} />
+          <ConvertedRecipe
+            lines={this.state.value}
+            ingredientDefinitions={this.props.ingredientDefinitions}
+            unitDefinitions={this.props.unitDefinitions}
+          />
         </div>
       </div>
     );
