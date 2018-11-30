@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./RecipeInput.module.css";
-import ConvertedRecipe from './ConvertedRecipe.js';
+import ConvertedRecipe from './ConvertedRecipe';
 
 export default class RecipeInput extends React.Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { defaultIngredientDefinitions, defaultUnitDefinitions } from 'reconv-domain';
-import RecipeInput from './components/recipe/RecipeInput.js';
+import RecipeInput from './components/recipe/RecipeInput';
 import RecipeDefinitionsInputs from './components/definitions/RecipeDefinitionsInputs';
 
 class App extends React.Component {

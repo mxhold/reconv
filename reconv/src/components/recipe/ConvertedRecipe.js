@@ -1,5 +1,5 @@
 import React from 'react';
-import {Ingredient, MalformedIngredient} from './Ingredient.js';
+import {Ingredient, MalformedIngredient} from './Ingredient';
 import { parseIngredient, convertIngredient, convertIngredientError } from 'reconv-domain';
 import styles from "./ConvertedRecipe.module.css";
 
