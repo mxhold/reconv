@@ -1,6 +1,5 @@
 import React from 'react';
 import DefinitionsInput from "./DefinitionsInput";
-import { defaultUnitDefinitions } from 'reconv-domain';
 
 export default class UnitDefinitionsInput extends React.Component {
   constructor(props) {
@@ -9,7 +8,7 @@ export default class UnitDefinitionsInput extends React.Component {
   }
 
   handleValueChange(value) {
-    this.props.handleDefinitionChange(this.deserializeDefinitions(value));
+    this.props.handleDefinitionsChange(this.deserializeDefinitions(value));
   }
 
   deserializeDefinitions(string) {
@@ -20,8 +19,8 @@ export default class UnitDefinitionsInput extends React.Component {
     });
   }
 
-  serializedDefaultDefinitions() {
-    return defaultUnitDefinitions.map( (unit) => {
+  serializeDefinitions(definitions) {
+    return definitions.map( (unit) => {
       return unit.unit + "," + unit.mL
     }).join("\n");
   }
@@ -31,7 +30,7 @@ export default class UnitDefinitionsInput extends React.Component {
       <DefinitionsInput
         kind="Unit"
         csvFormat="unit,mL"
-        value={this.serializedDefaultDefinitions()}
+        defaultValue={this.serializeDefinitions(this.props.defaultDefinitions)}
         handleValueChange={this.handleValueChange}
       />
     );

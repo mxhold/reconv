@@ -1,6 +1,5 @@
 import React from 'react';
 import DefinitionsInput from "./DefinitionsInput";
-import { defaultIngredientDefinitions } from 'reconv-domain';
 
 export default class IngredientDefinitionsInput extends React.Component {
   constructor(props) {
@@ -9,7 +8,7 @@ export default class IngredientDefinitionsInput extends React.Component {
   }
 
   handleValueChange(value) {
-    this.props.handleDefinitionChange(this.deserializeDefinitions(value));
+    this.props.handleDefinitionsChange(this.deserializeDefinitions(value));
   }
 
   deserializeDefinitions(string) {
@@ -20,8 +19,8 @@ export default class IngredientDefinitionsInput extends React.Component {
     });
   }
 
-  serializedDefaultDefinitions() {
-    return defaultIngredientDefinitions.map( (ingredient) => {
+  serializeDefinitions(definitions) {
+    return definitions.map( (ingredient) => {
       return ingredient.name + "," + ingredient.density
     }).join("\n");
   }
@@ -31,7 +30,7 @@ export default class IngredientDefinitionsInput extends React.Component {
       <DefinitionsInput
         kind="Ingredient"
         csvFormat="name,density"
-        value={this.serializedDefaultDefinitions()}
+        defaultValue={this.serializeDefinitions(this.props.defaultDefinitions)}
         handleValueChange={this.handleValueChange}
       />
     );

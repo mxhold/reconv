@@ -20,7 +20,7 @@ export default class DefinitionsInput extends React.Component {
         <textarea
           spellCheck="false"
           onChange={this.handleChange}
-          defaultValue={this.props.value}
+          defaultValue={this.props.defaultValue}
           className={styles.definitionField}
         />
       </div>
