@@ -8,11 +8,9 @@ export default class RecipeInput extends React.Component {
     this.state = {
       value: props.value,
     };
-
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({value: event.target.value});
   }
 

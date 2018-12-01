@@ -10,15 +10,13 @@ export default class App extends React.Component {
       unitDefinitions: defaultUnitDefinitions,
       ingredientDefinitions: defaultIngredientDefinitions,
     };
-    this.handleUnitDefinitionsChange = this.handleUnitDefinitionsChange.bind(this);
-    this.handleIngredientDefinitionsChange = this.handleIngredientDefinitionsChange.bind(this);
   }
 
-  handleUnitDefinitionsChange(definitions) {
+  handleUnitDefinitionsChange = (definitions) => {
     this.setState({unitDefinitions: definitions})
   }
 
-  handleIngredientDefinitionsChange(definitions) {
+  handleIngredientDefinitionsChange = (definitions) => {
     this.setState({ingredientDefinitions: definitions})
   }
 

@@ -9,10 +9,9 @@ export default class RecipeDefinitionsInputs extends React.Component {
     this.state = {
       showDefinitions: false,
     };
-    this.handleShowDefinitionsChange = this.handleShowDefinitionsChange.bind(this);
   }
 
-  handleShowDefinitionsChange(event) {
+  handleShowDefinitionsChange = (event) => {
     this.setState({showDefinitions: event.target.checked});
   }
 
