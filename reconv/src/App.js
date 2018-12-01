@@ -3,7 +3,7 @@ import { defaultIngredientDefinitions, defaultUnitDefinitions } from 'reconv-dom
 import RecipeInput from './components/recipe/RecipeInput';
 import RecipeDefinitionsInputs from './components/definitions/RecipeDefinitionsInputs';
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,8 +23,8 @@ class App extends React.Component {
   }
 
   render() {
-    let lines = "1/2c butter\n1c sugar\n2 eggs, beaten\n3 bananas, crushed\n1 1/2c flour\n1t baking soda\n1/2t salt\n1/2t vanilla";
-    let sparkleEmoji = <span role="img" aria-label="sparkle">✨</span>;
+    const lines = "1/2c butter\n1c sugar\n2 eggs, beaten\n3 bananas, crushed\n1 1/2c flour\n1t baking soda\n1/2t salt\n1/2t vanilla";
+    const sparkleEmoji = <span role="img" aria-label="sparkle">✨</span>;
 
     return (
       <div>
@@ -49,5 +49,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;

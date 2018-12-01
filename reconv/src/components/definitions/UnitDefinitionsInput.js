@@ -1,17 +1,12 @@
 import React from 'react';
 import DefinitionsInput from "./DefinitionsInput";
 
-export default class UnitDefinitionsInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleValueChange = this.handleValueChange.bind(this);
+export default function UnitDefinitionsInput(props) {
+  function handleValueChange(value) {
+    props.handleDefinitionsChange(deserializeDefinitions(value));
   }
 
-  handleValueChange(value) {
-    this.props.handleDefinitionsChange(this.deserializeDefinitions(value));
-  }
-
-  deserializeDefinitions(string) {
+  function deserializeDefinitions(string) {
     return string.split("\n").map(line => {
       let [unit, mL] = line.split(",");
       mL = Number.parseFloat(mL, 10);
@@ -19,20 +14,18 @@ export default class UnitDefinitionsInput extends React.Component {
     });
   }
 
-  serializeDefinitions(definitions) {
+  function serializeDefinitions(definitions) {
     return definitions.map( (unit) => {
       return unit.unit + "," + unit.mL
     }).join("\n");
   }
 
-  render() {
-    return (
-      <DefinitionsInput
-        kind="Unit"
-        csvFormat="unit,mL"
-        defaultValue={this.serializeDefinitions(this.props.defaultDefinitions)}
-        handleValueChange={this.handleValueChange}
-      />
-    );
-  }
+  return (
+    <DefinitionsInput
+      kind="Unit"
+      csvFormat="unit,mL"
+      defaultValue={serializeDefinitions(props.defaultDefinitions)}
+      handleValueChange={handleValueChange}
+    />
+  );
 }

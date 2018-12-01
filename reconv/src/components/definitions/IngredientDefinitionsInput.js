@@ -1,17 +1,12 @@
 import React from 'react';
 import DefinitionsInput from "./DefinitionsInput";
 
-export default class IngredientDefinitionsInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleValueChange = this.handleValueChange.bind(this);
+export default function IngredientDefinitionsInput(props) {
+  function handleValueChange(value) {
+    props.handleDefinitionsChange(deserializeDefinitions(value));
   }
 
-  handleValueChange(value) {
-    this.props.handleDefinitionsChange(this.deserializeDefinitions(value));
-  }
-
-  deserializeDefinitions(string) {
+  function deserializeDefinitions(string) {
     return string.split("\n").map(line => {
       let [name, density] = line.split(",");
       density = Number.parseFloat(density, 10);
@@ -19,20 +14,19 @@ export default class IngredientDefinitionsInput extends React.Component {
     });
   }
 
-  serializeDefinitions(definitions) {
+  function serializeDefinitions(definitions) {
     return definitions.map( (ingredient) => {
       return ingredient.name + "," + ingredient.density
     }).join("\n");
   }
 
-  render() {
-    return (
-      <DefinitionsInput
-        kind="Ingredient"
-        csvFormat="name,density"
-        defaultValue={this.serializeDefinitions(this.props.defaultDefinitions)}
-        handleValueChange={this.handleValueChange}
-      />
-    );
-  }
+
+  return (
+    <DefinitionsInput
+      kind="Ingredient"
+      csvFormat="name,density"
+      defaultValue={serializeDefinitions(props.defaultDefinitions)}
+      handleValueChange={handleValueChange}
+    />
+  );
 }
