@@ -12,12 +12,12 @@ export default class App extends React.Component {
     };
   }
 
-  handleUnitDefinitionsChange = (definitions) => {
-    this.setState({unitDefinitions: definitions})
+  handleUnitDefinitionsChange = (unitDefinitions) => {
+    this.setState({unitDefinitions})
   }
 
-  handleIngredientDefinitionsChange = (definitions) => {
-    this.setState({ingredientDefinitions: definitions})
+  handleIngredientDefinitionsChange = (ingredientDefinitions) => {
+    this.setState({ingredientDefinitions})
   }
 
   render() {
