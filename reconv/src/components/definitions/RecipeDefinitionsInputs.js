@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from "./RecipeDefinitionsInputs.module.css";
-import UnitDefinitionsInput from './UnitDefinitionsInput';
-import IngredientDefinitionsInput from './IngredientDefinitionsInput';
+import DefinitionsInput from "./DefinitionsInput";
 
 export default class RecipeDefinitionsInputs extends React.Component {
   state = {
@@ -16,17 +15,21 @@ export default class RecipeDefinitionsInputs extends React.Component {
     let definitions = (
       <div className={styles.wrapper}>
         <div className={styles.child}>
-          <UnitDefinitionsInput
-            handleDefinitionsChange={this.props.handleUnitDefinitionsChange}
-            defaultDefinitions={this.props.defaultUnitDefinitions}
+          <DefinitionsInput
+            kind="Unit"
+            csvFormat="unit,mL"
+            value={this.props.unitDefinitions}
+            handleValueChange={this.props.handleUnitDefinitionsChange}
           />
         </div>
 
         <div className={styles.child}>
-          <IngredientDefinitionsInput
-            handleDefinitionsChange={this.props.handleIngredientDefinitionsChange}
-            defaultDefinitions={this.props.defaultIngredientDefinitions}
-          />
+          <DefinitionsInput
+              kind="Ingredient"
+              csvFormat="name,density"
+              value={this.props.ingredientDefinitions}
+              handleValueChange={this.props.handleIngredientDefinitionsChange}
+            />
         </div>
       </div>
     );

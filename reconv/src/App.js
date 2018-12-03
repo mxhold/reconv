@@ -5,16 +5,36 @@ import RecipeDefinitionsInputs from './components/definitions/RecipeDefinitionsI
 
 export default class App extends React.Component {
   state = {
-    unitDefinitions: defaultUnitDefinitions,
-    ingredientDefinitions: defaultIngredientDefinitions,
+    unitDefinitions: defaultUnitDefinitions.map( (unit) => {
+      return unit.unit + "," + unit.mL
+    }).join("\n"),
+    ingredientDefinitions: defaultIngredientDefinitions.map( (ingredient) => {
+      return ingredient.name + "," + ingredient.density
+    }).join("\n"),
   };
 
-  handleUnitDefinitionsChange = (unitDefinitions) => {
-    this.setState({unitDefinitions})
+  deserializeUnitDefinitions = (string) => {
+    return string.split("\n").map(line => {
+      let [unit, mL] = line.split(",");
+      mL = Number.parseFloat(mL, 10);
+      return { unit, mL };
+    });
   }
 
-  handleIngredientDefinitionsChange = (ingredientDefinitions) => {
-    this.setState({ingredientDefinitions})
+  deserializeIngredientDefinitions = (string) => {
+    return string.split("\n").map(line => {
+      let [name, density] = line.split(",");
+      density = Number.parseFloat(density, 10);
+      return { name, density };
+    });
+  }
+
+  handleUnitDefinitionsChange = (event) => {
+    this.setState({unitDefinitions: event.target.value})
+  }
+
+  handleIngredientDefinitionsChange = (event) => {
+    this.setState({ingredientDefinitions:  event.target.value})
   }
 
   render() {
@@ -30,14 +50,14 @@ export default class App extends React.Component {
 
         <RecipeInput
           value={lines}
-          ingredientDefinitions={this.state.ingredientDefinitions}
-          unitDefinitions={this.state.unitDefinitions}
+          ingredientDefinitions={this.deserializeIngredientDefinitions(this.state.ingredientDefinitions)}
+          unitDefinitions={this.deserializeUnitDefinitions(this.state.unitDefinitions)}
         />
 
         <RecipeDefinitionsInputs
-          defaultUnitDefinitions={this.state.unitDefinitions}
+          unitDefinitions={this.state.unitDefinitions}
           handleUnitDefinitionsChange={this.handleUnitDefinitionsChange}
-          defaultIngredientDefinitions={this.state.ingredientDefinitions}
+          ingredientDefinitions={this.state.ingredientDefinitions}
           handleIngredientDefinitionsChange={this.handleIngredientDefinitionsChange}
         />
       </div>
