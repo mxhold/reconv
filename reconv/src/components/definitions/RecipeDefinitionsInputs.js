@@ -4,12 +4,9 @@ import UnitDefinitionsInput from './UnitDefinitionsInput';
 import IngredientDefinitionsInput from './IngredientDefinitionsInput';
 
 export default class RecipeDefinitionsInputs extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showDefinitions: false,
-    };
-  }
+  state = {
+    showDefinitions: false,
+  };
 
   handleShowDefinitionsChange = (event) => {
     this.setState({showDefinitions: event.target.checked});

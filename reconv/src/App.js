@@ -4,13 +4,10 @@ import RecipeInput from './components/recipe/RecipeInput';
 import RecipeDefinitionsInputs from './components/definitions/RecipeDefinitionsInputs';
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      unitDefinitions: defaultUnitDefinitions,
-      ingredientDefinitions: defaultIngredientDefinitions,
-    };
-  }
+  state = {
+    unitDefinitions: defaultUnitDefinitions,
+    ingredientDefinitions: defaultIngredientDefinitions,
+  };
 
   handleUnitDefinitionsChange = (unitDefinitions) => {
     this.setState({unitDefinitions})
