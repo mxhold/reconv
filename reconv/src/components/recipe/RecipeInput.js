@@ -6,12 +6,12 @@ export default class RecipeInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.value,
+      recipe: props.recipe,
     };
   }
 
   handleChange = (event) => {
-    this.setState({value: event.target.value});
+    this.setState({recipe: event.target.value});
   }
 
   render() {
@@ -21,7 +21,7 @@ export default class RecipeInput extends React.Component {
           <h2>Recipe</h2>
           <textarea
             spellCheck="false"
-            value={this.state.value}
+            value={this.state.recipe}
             onChange={this.handleChange}
             className={styles.inputField}
           />
@@ -29,7 +29,7 @@ export default class RecipeInput extends React.Component {
         <div className={styles.output}>
           <h2>Converted Recipe</h2>
           <ConvertedRecipe
-            lines={this.state.value}
+            recipe={this.state.recipe}
             ingredientDefinitions={this.props.ingredientDefinitions}
             unitDefinitions={this.props.unitDefinitions}
           />

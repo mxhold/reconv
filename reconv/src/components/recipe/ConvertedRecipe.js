@@ -4,9 +4,7 @@ import { parseIngredient, convertIngredient, convertIngredientError } from 'reco
 import styles from "./ConvertedRecipe.module.css";
 
 export default function ConvertedRecipe(props) {
-  const lines = props.lines;
-
-  const ingredients = lines.split("\n").map((line, i) => {
+  const ingredients = props.recipe.split("\n").map((line, i) => {
     const parseResult = parseIngredient(line);
     if (parseResult.success) {
       const parsedIngredient = parseResult.result;
